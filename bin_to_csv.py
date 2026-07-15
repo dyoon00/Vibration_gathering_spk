@@ -40,6 +40,15 @@ def _write_header(writer, meta):
     writer.writerow(["데이터종류", meta.get("데이터종류", "")])
     writer.writerow(["모터RPM", meta.get("모터RPM", "")])
     writer.writerow(["주파수", meta.get("주파수", "")])
+    writer.writerow(["토출량", meta.get("토출량", "")])
+    writer.writerow(["전양정", meta.get("전양정", "")])
+    writer.writerow(["축동력", meta.get("축동력", "")])
+    writer.writerow(["흡입압력", meta.get("흡입압력", "")])
+    writer.writerow(["토출압력", meta.get("토출압력", "")])
+    writer.writerow(["전류", meta.get("전류", "")])
+    writer.writerow(["효율", meta.get("효율", "")])
+    writer.writerow(["역률", meta.get("역률", "")])
+    writer.writerow(["전압", meta.get("전압", "")])
     writer.writerow([])  # 구분용 빈 줄
 
     # idx: 이 세션 전체 기준으로 계속 증가하는 샘플 번호 (파일이 나뉘어도 이어짐)
@@ -51,7 +60,9 @@ def convert_to_csv(start_idx, end_idx, meta, data_dir=DATA_DIR, csv_dir=CSV_DIR,
     """
     start_idx ~ end_idx-1 슬롯을 순서대로 이어붙여 CSV로 저장.
     SLOTS_PER_FILE(기본 50슬롯 = 819200샘플)마다 파일을 분할함 (_part001, _part002, ...).
-    meta: {"날짜":..., "파일명":..., "데이터종류":..., "모터RPM":..., "주파수":...}
+    meta: {"날짜":..., "파일명":..., "데이터종류":..., "모터RPM":..., "주파수":...,
+           "토출량":..., "전양정":..., "축동력":..., "흡입압력":..., "토출압력":...,
+           "전류":..., "효율":..., "역률":..., "전압":...}
     progress_callback(percent:int) : 5% 단위로 호출됨. 안 넘기면 콘솔에 자체 출력.
     반환: (csv_path 목록, missing_slot_count)
     """
@@ -208,6 +219,15 @@ if __name__ == "__main__":
         "데이터종류": "",
         "모터RPM": "",
         "주파수": "",
+        "토출량": "",
+        "전양정": "",
+        "축동력": "",
+        "흡입압력": "",
+        "토출압력": "",
+        "전류": "",
+        "효율": "",
+        "역률": "",
+        "전압": "",
     }
     paths, missing = convert_to_csv(s, e, meta)
     print(f"저장 완료: {len(paths)}개 파일 (누락 슬롯: {missing}개)")
