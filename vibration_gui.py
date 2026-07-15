@@ -151,6 +151,15 @@ class VibrationApp:
         self.entries["주파수"] = e
         row += 1
 
+        # 토출량, 전양정, 축동력, 흡입압력, 토출압력, 전류, 효율, 역률, 전압
+        for label in ["토출량", "전양정", "축동력", "흡입압력", "토출압력",
+                      "전류", "효율", "역률", "전압"]:
+            ttk.Label(frm, text=label).grid(row=row, column=0, sticky="w", pady=4)
+            e = ttk.Entry(frm, width=30)
+            e.grid(row=row, column=1, pady=4, padx=6)
+            self.entries[label] = e
+            row += 1
+
         btn_frame = ttk.Frame(frm)
         btn_frame.grid(row=row, column=0, columnspan=2, pady=12)
 
@@ -172,6 +181,15 @@ class VibrationApp:
             "데이터종류": self.entries["데이터종류"].get(),
             "모터RPM": self.entries["모터 RPM"].get(),
             "주파수": self.entries["주파수"].get(),
+            "토출량": self.entries["토출량"].get(),
+            "전양정": self.entries["전양정"].get(),
+            "축동력": self.entries["축동력"].get(),
+            "흡입압력": self.entries["흡입압력"].get(),
+            "토출압력": self.entries["토출압력"].get(),
+            "전류": self.entries["전류"].get(),
+            "효율": self.entries["효율"].get(),
+            "역률": self.entries["역률"].get(),
+            "전압": self.entries["전압"].get(),
         }
 
     def start_collection(self):
